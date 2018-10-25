@@ -1,2 +1,2 @@
-# RoboGames-
-Code for autonomous robot to find and pick up colored balls
+# CIS-7
+Code and assignments for CIS-7
