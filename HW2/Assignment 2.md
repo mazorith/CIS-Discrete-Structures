@@ -14,5 +14,7 @@ p->q <=> p->q	        Implication
 (p v q)->r        <=>	(p v q)->r	Implication
 ```
 ```
-(Ǝx)A(x) ^ (Ǝx)B(x) -> (Ǝx)(A(x) ^ B(x)) x = Plants A(x) = are fruit B(x) = are vegatables There exists some plants that are fruits and there exists some plants that are vegetables then their exists some plants that are fruist and vegetables.
+(Ǝx)A(x) ^ (Ǝx)B(x) -> (Ǝx)(A(x) ^ B(x))
+
+x = Plants A(x) = are fruit B(x) = are vegatables There exists some plants that are fruits and there exists some plants that are vegetables then their exists some plants that are fruist and vegetables.
 ```
