@@ -34,6 +34,7 @@ NEITHER
 
 ## Part 3
 
+```
 (p ∧ q)->r   <=> p->(q->r)   Given    
 (p ^ q)' v r <=> p->(q->r)   implication 
 p' v q' v r  <=> p->(q->r)   De Morgans  
@@ -46,3 +47,4 @@ p->(q->r)    <=> p->(q->r)   implication
 p v (q' ^ r')       <=> (q ∨ r)->p   distributive 
 p v (q ^ r )'       <=> (q ∨ r)->p   De morgans   
 (q ^ r)->p          <=> (q ∨ r)->p   implication  
+```
