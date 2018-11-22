@@ -22,7 +22,7 @@ If Mathematics is easy then the homework is done and If it is sunny then camping
 | F | F | T  | T  | T        | F       |  T              | T
 
 
-Tautology
+Tautology - all true
 
 2.) ((A → B)∧(B → ¬A)) → A
 
