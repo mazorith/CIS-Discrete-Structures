@@ -7,11 +7,11 @@ p->q <=> p'v q        Commutative
 p->q <=> p->q	        Implication
 ```
 ```
-(p->r)^(q->r)     <=> (p v q)->r  Given
-(p' v r)^(q' v r) <=> (p v q)->r  Implication
-(p' ^ q') v r     <=> (p v q)->r  Distributive
-(p v q)' v r      <=> (p v q)->r  De Morgan's Law
-(p v q)->r        <=> (p v q)->r  Implication
+(p v q)->r <=> (p->r)^(q->r)      Given
+(p v q)->r <=> (p' v r)^(q' v r)  Implication
+(p v q)->r <=> (p' ^ q') v r      Distributive 
+(p v q)->r <=> (p v q)' v r       De Morgan's Law
+(p v q)->r <=> (p v q)->r         Implication
 ```
 ```
 (Ǝx)A(x) ^ (Ǝx)B(x) -> (Ǝx)(A(x) ^ B(x))
