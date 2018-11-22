@@ -1,4 +1,4 @@
-(When I did this assignment I got a bit confused and had Rebecca walk me though this outside of class)
+(When I did this assignment I didnt understand it entirely and had Rebecca walk me though this outside of class)
 ## Part 1:
 
 1.)Show that the square root of 2 is irrational 
