@@ -16,5 +16,9 @@ p->q <=> p->q	        Implication
 ```
 (Ǝx)A(x) ^ (Ǝx)B(x) -> (Ǝx)(A(x) ^ B(x))
 
-x = Plants A(x) = are fruit B(x) = are vegatables There exists some plants that are fruits and there exists some plants that are vegetables then their exists some plants that are fruist and vegetables.
+x = animals 
+A(x) = humans
+B(x) = cows
+
+If there exists some animals that are humans and there exists some animals that are cows, then there exists some animals that are humans and cows.
 ```
