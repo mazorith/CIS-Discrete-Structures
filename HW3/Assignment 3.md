@@ -13,6 +13,7 @@ If Mathematics is easy then the homework is done and If it is sunny then camping
 ## Part 2:
 
 1.) (¬B → ¬A) → ((¬B → A) → B)
+
 | A | B | ¬A | ¬B | ¬B → ¬A  | ¬B → A  | ((¬B → A) -> B | (¬B → ¬A) → ((¬B → A) → B)
 |---|---|--- |--- | -------- | ------- | --------------- |--------------------------- 
 | T | T | F  | F  | T        | T       |  T              | T
@@ -24,6 +25,7 @@ If Mathematics is easy then the homework is done and If it is sunny then camping
 Tautology
 
 2.) ((A → B)∧(B → ¬A)) → A
+
 | A | B | ¬A |  A → B  | B → ¬A  | ((A → B)∧(B → ¬A)) | ((A → B)∧(B → ¬A)) → A
 |---|---|--- | ------- | ------- | ------------------ | ---------------------- 
 | T | T | F  | T       | F       | F                  | T
