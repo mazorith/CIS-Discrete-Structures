@@ -20,5 +20,6 @@ x = animals
 A(x) = humans
 B(x) = cows
 
-If there exists some animals that are humans and there exists some animals that are cows, then there exists some animals that are humans and cows.
+If there exists some animals that are humans and there exists some animals that 
+are cows, then there exists some animals that are humans and cows.
 ```
