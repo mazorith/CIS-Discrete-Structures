@@ -55,7 +55,8 @@ p v (q ^ r )'       <=> (q ∨ r)->p   De morgans
 (q ^ r)->p          <=> (q ∨ r)->p   implication  
 ```
 
-### Part 4:
+## Part 4:
+
 Let Loves(x,y) mean “x loves y,” Traveler(x) mean “x is a traveler,”
 City(x) mean “x is a city,” Lives(x,y) mean “x lives in y.”
 
@@ -69,7 +70,7 @@ Then a traveler loves the city and those who live in the city do not love the ci
 ∃x∀y(City(x) ∧ Traveler(y)) → (¬Loves(y,x) ∧ Lives(y,x))
 ```
 
-### Part 5: 
+## Part 5: 
 
 1.)Assuming: p → (q ∧ r ), s → r , r → p
    Prove s → q
