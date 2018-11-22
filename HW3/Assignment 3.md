@@ -80,7 +80,6 @@ r      mpp
 p      mpp    
 q ^ r  mpp   
 q      truth table
-s → q  steps 1-5
 ```
 
 1.)Assuming: ¬(r ∨ s), ¬p → s, p → q.
