@@ -17,7 +17,7 @@ int main()
 {
 	//graph variables
 	vector<Vertex*> vertices;
-	vector<Edge*> allTheEdge;
+	vector<Edge*> allTheEdges;
 	int selection = 0;
 
 	//graph status variables
@@ -31,7 +31,7 @@ int main()
 	{
 		//selection screen options will only appear once graph is populated
 		connectedCheckInt = 0;
-		displayGraph(vertices, allTheEdge);
+		displayGraph(vertices, allTheEdges);
 		cout << "\n\twhat would you like to do?\n"
 			 << "\n\t[0] add a vertex";
 		if (vertices.size() > 0)
@@ -39,7 +39,7 @@ int main()
 			cout << "\n\t[1] add an edge"
 				 << "\n\t[2] list of Isolated vertices";
 		}
-		if (allTheEdge.size() > 0) 
+		if (allTheEdges.size() > 0) 
 		{
 			cout << "\n\t[3] Vertex with the Highest Degree" 
 				 << "\n\t[4] check number of loops"
@@ -54,35 +54,43 @@ int main()
 		system("CLS");
 		switch (selection)
 		{
-			case 0: addtoGraph(vertices, allTheEdge, selection);
+			case 0: addtoGraph(vertices, allTheEdges, selection);
 				break;
-			case 1: addtoGraph(vertices, allTheEdge, selection);
+
+			if (vertices.size() > 0)
+			{
+				case 1: addtoGraph(vertices, allTheEdges, selection);
+					break;
+				case 2: isolatedVertices(vertices);
 				break;
-			case 2: isolatedVertices(vertices);
-				break;
-			case 3: vertexOfHighestDegree(vertices);
-				break; 
-			case 4: loopCheck(allTheEdge);
-				break;
-			case 5: isConnected = connectedCheck(vertices, 0, connectedCheckInt);
-					
+			}
+
+			if (allTheEdges.size() > 0)
+			{
+				case 3: vertexOfHighestDegree(vertices);
+					break;
+				case 4: loopCheck(allTheEdges);
+					break;
+				case 5: isConnected = connectedCheck(vertices, 0, connectedCheckInt);
+
 					if (isConnected)
 						cout << "\n\nGraph is connected!\n";
 					else
 						cout << "\n\nGraph is not connected.\n";
 
-					for (Vertex* vertex : vertices) 
+					for (Vertex* vertex : vertices)
 					{
 						vertex->setConnected(false);
 					}
-				break;
-			case 6: isComplete = completeCheck(vertices);
+					break;
+				case 6: isComplete = completeCheck(vertices);
 
 					if (isComplete)
 						cout << "\n\nGraph is complete!\n";
 					else
 						cout << "\n\nGraph is not complete.\n";
-				break;
+					break;
+			}
 		}
 	} while (selection != -1);
 
@@ -142,6 +150,7 @@ void addtoGraph(vector<Vertex*> &vVec, vector<Edge*> &eVec, int selector)
 
 		bool foundVertex = false;
 		
+		//input and confirmation of inputted vertices
 		do
 		{
 			cout << "\n\nPlease enter a starting vertex: ";
@@ -173,6 +182,18 @@ void addtoGraph(vector<Vertex*> &vVec, vector<Edge*> &eVec, int selector)
 			}
 		} while (!foundVertex);
 
+		//parallel edge check
+		for (Edge* edge : eVec)
+		{
+			//if edge is parallel return without creating a new edge
+			if ((edge->getv1()->getID() == v1 && edge->getv2()->getID() == v2) || (edge->getv1()->getID() == v2 && edge->getv2()->getID() == v1))
+			{
+				cout << "\n\nThis edge is parallel to edge " << edge->getID() + 1 << ". As such this edge will not be created.\n\n";
+				return;
+			}
+		}
+
+		//create new edge
 		Edge* e = new Edge(vVec[v1], vVec[v2], eVec.size());
 		if (v1 == v2) 
 		{
@@ -192,19 +213,25 @@ void addtoGraph(vector<Vertex*> &vVec, vector<Edge*> &eVec, int selector)
 //===================================================================================
 void vertexOfHighestDegree(vector<Vertex*> vVec) 
 {
+	//vertex pointer of highest degree along with vector incase of multiple vertices with highest degree
 	vector<Vertex*> highestVertices;
 	Vertex* highestVertex = vVec[0];
+
+	//find highest degree vertex
 	for (Vertex* vertex : vVec) 
 	{
 		if (vertex->getEdges().size() >= highestVertex->getEdges().size()) 
 			highestVertex = vertex;
 	}
+
+	//collect all vertices with highest degree
 	for (Vertex* vertex : vVec) 
 	{
 		if (vertex->getEdges().size() == highestVertex->getEdges().size())
 			highestVertices.push_back(vertex);
 	}
 
+	//display
 	cout << "\n\nVertex(s) of the highest degree: ";
 	for (Vertex* vertex : highestVertices) 
 	{
@@ -262,6 +289,7 @@ void loopCheck(vector<Edge*> eVec)
 //===================================================================================
 bool connectedCheck(vector<Vertex*> vVec, int startVertex, int &verticesTraveled)
 {
+	//check to see if vertex was already visited if not tic bool and add to a counter
 	if (vVec[startVertex]->getConnected())
 	{
 		//Do nothing
@@ -272,12 +300,14 @@ bool connectedCheck(vector<Vertex*> vVec, int startVertex, int &verticesTraveled
 		verticesTraveled++;
 	}
 
+	//recursively follow paths of connected edges
 	for (Edge* edge : vVec[startVertex]->getEdges()) 
 	{
 		if (!edge->getv2()->getConnected())
 		{
 			connectedCheck(vVec, edge->getv2()->getID(), verticesTraveled);
 		}
+		//if at any time the amount of vertices travelled equals the amount of vertices, graph is connected
 		if (verticesTraveled == vVec.size())
 			return true;
 	}
@@ -290,10 +320,28 @@ bool connectedCheck(vector<Vertex*> vVec, int startVertex, int &verticesTraveled
 //===================================================================================
 bool completeCheck(vector<Vertex*> vVec)
 {
+	//for single vertex with loop
+	if (vVec.size() == 1)
+	{
+		if (vVec[0]->getEdges().size() == vVec.size())
+			return true;
+		else
+			return false;
+	}
+
+	//check each vertex to see if the amount of edges is equal to all vertices - 1
+	//check each vertex for a loop, if loop(s) exists subract loop(s) from edge count 
+	int loopMod = 0;
 	for (Vertex* vertex : vVec) 
 	{
-		if (vertex->getEdges().size() != vVec.size() - 1)
+		for (Edge* edge : vertex->getEdges()) 
+		{
+			if (edge->getv1()->getID() == edge->getv2()->getID())
+				loopMod++;
+		}
+		if (vertex->getEdges().size() - loopMod != vVec.size() - 1)
 			return false;
+		loopMod = 0;
 	}
 
 	return true;
