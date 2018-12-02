@@ -52,45 +52,41 @@ int main()
 		cin >> selection;
 
 		system("CLS");
+
+		if (selection > 0 && vertices.size() == 0)
+			selection = 999;
+		if (selection > 2 && allTheEdges.size() == 0)
+			selection = 999;
+
 		switch (selection)
 		{
 			case 0: addtoGraph(vertices, allTheEdges, selection);
 				break;
-
-			if (vertices.size() > 0)
-			{
-				case 1: addtoGraph(vertices, allTheEdges, selection);
-					break;
-				case 2: isolatedVertices(vertices);
+			case 1: addtoGraph(vertices, allTheEdges, selection);
 				break;
-			}
-
-			if (allTheEdges.size() > 0)
-			{
-				case 3: vertexOfHighestDegree(vertices);
-					break;
-				case 4: loopCheck(allTheEdges);
-					break;
-				case 5: isConnected = connectedCheck(vertices, 0, connectedCheckInt);
-
-					if (isConnected)
-						cout << "\n\nGraph is connected!\n";
-					else
-						cout << "\n\nGraph is not connected.\n";
+			case 2: isolatedVertices(vertices);
+				break;
+			case 3: vertexOfHighestDegree(vertices);
+				break;
+			case 4: loopCheck(allTheEdges);
+				break;
+			case 5: isConnected = connectedCheck(vertices, 0, connectedCheckInt);
+				if (isConnected)
+					cout << "\n\nGraph is connected!\n";
+				else
+					cout << "\n\nGraph is not connected.\n";
 
 					for (Vertex* vertex : vertices)
-					{
-						vertex->setConnected(false);
-					}
-					break;
-				case 6: isComplete = completeCheck(vertices);
-
-					if (isComplete)
-						cout << "\n\nGraph is complete!\n";
-					else
-						cout << "\n\nGraph is not complete.\n";
-					break;
-			}
+				{
+					vertex->setConnected(false);
+				}
+				break;
+			case 6: isComplete = completeCheck(vertices);
+				if (isComplete)
+					cout << "\n\nGraph is complete!\n";
+				else
+					cout << "\n\nGraph is not complete.\n";
+				break;
 		}
 	} while (selection != -1);
 
@@ -246,7 +242,7 @@ void vertexOfHighestDegree(vector<Vertex*> vVec)
 void isolatedVertices(vector<Vertex*> vVec) 
 {
 	bool isolatedVerticesFound = false;
-	cout << "Isolated vertices: ";
+	cout << "\n\nIsolated vertices: ";
 	for (Vertex* vertex : vVec) 
 	{
 		if (vertex->getEdges().size() == 0)
