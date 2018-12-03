@@ -299,6 +299,10 @@ bool connectedCheck(vector<Vertex*> vVec, int startVertex, int &verticesTraveled
 	//recursively follow paths of connected edges
 	for (Edge* edge : vVec[startVertex]->getEdges()) 
 	{
+		if (!edge->getv1()->getConnected())
+		{
+			connectedCheck(vVec, edge->getv1()->getID(), verticesTraveled);
+		}
 		if (!edge->getv2()->getConnected())
 		{
 			connectedCheck(vVec, edge->getv2()->getID(), verticesTraveled);
