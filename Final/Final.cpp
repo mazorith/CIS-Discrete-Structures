@@ -124,6 +124,15 @@ void addtoGraph(vector<Vertex*> &vVec, vector<Edge*> &eVec, int selector)
 		cout << "\n\nPlease enter a letter for your vertex: ";
 		cin >> vertexName;
 
+		for (Vertex* vertex : vVec)
+		{
+			if (vertex->getCharID() == vertexName)
+			{
+				cout << "A vertex with this name already exisits!\n\n";
+				return;
+			}
+		}
+
 		Vertex* v = new Vertex(vVec.size(), vertexName);
 		vVec.push_back(v);
 	}
